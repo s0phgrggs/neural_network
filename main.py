@@ -1,12 +1,15 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-from mnist import MNIST
 
-mndata = MNIST("/Users/sophiegriggs/.cache/kagglehub/datasets/hojjatk/mnist-dataset/versions/1")
+data = pd.read_csv("mnist_train.csv")
+data = np.array(data)
 
-images, labels = mndata.load_training()
+m, n = data.shape
+np.random.shuffle(data)
 
-print(len(images))
-print(labels[0])
-print(images[0])
+labels = data[:, 0]
+images = data[:, 1:]
+images = images / 255.0
+
+print("Number of images:", m)
+print("Number of pixels:", n - 1)
