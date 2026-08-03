@@ -13,3 +13,12 @@ images = data[:, 1:] / 255.0
 m, n = data.shape
 print(f"Images: {m}")
 print(f"Pixels per image: {n}")
+
+dev_images = images[:1000]
+dev_labels = labels[:1000]
+
+train_images = images[1000:]
+train_labels = labels[1000:]
+
+print(train_images.shape)
+print(dev_images.shape)
