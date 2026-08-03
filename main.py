@@ -36,6 +36,9 @@ def init_params():
 def ReLU(Z):
     return np.maximum(Z, 0)
 
+def ReLU_deriv(Z):
+    return Z > 0
+
 def softmax(Z):
     #axis 0: does the operation down the rows separately for each column
     exp_Z = np.exp(Z - np.max(Z, axis=0, keepdims=True))
@@ -54,9 +57,5 @@ def forward_prop(W1, b1, W2, b2, X):
 def one_hot(Y):
     one_hot_Y = np.zeros((Y.size, 10))
     one_hot_Y[np.arange(Y.size), Y] = 1
-    
+
     return one_hot_Y.T
-
-test_labels = np.array([2, 5, 7])
-
-print(one_hot(test_labels))
