@@ -12,8 +12,8 @@ labels = data[:, 0]
 images = data[:, 1:] / 255.0
 
 m, n = data.shape
-print(f"Images: {m}")
-print(f"Pixels per image: {n}")
+print("Images:", m)
+print("Pixels per image:", n)
 
 dev_images = images[:1000].T
 dev_labels = labels[:1000]
@@ -111,8 +111,8 @@ def gradient_descent(X, Y, iterations, learning_rate):
             predictions = get_predictions(A2)
             accuracy = get_accuracy(predictions, Y)
 
-            print(f"Iteration: {i}")
-            print(f"Accuracy: {accuracy:.3f}")
+            print("Iteration:", i)
+            print("Accuracy:", round(accuracy, 3))
 
     return W1, b1, W2, b2
 
@@ -145,8 +145,17 @@ def test_prediction(index, W1, b1, W2, b2):
     image = current_image.reshape((28, 28))
 
     plt.imshow(image, cmap="gray")
-    plt.title(f"Prediction: {prediction[0]}, Actual: {dev_labels[index]}")
+    plt.title("Prediction: " + str(prediction[0]) + ", Actual: " + str(dev_labels[index]))    
     plt.axis("off")
     plt.show()
 
-test_prediction(0, W1, b1, W2, b2)
+def evaluate_dev_set(W1, b1, W2, b2):
+    
+    predictions = make_predictions(
+        dev_images, W1, b1, W2, b2)
+    accuracy = get_accuracy(predictions, dev_labels)    
+
+    print("Dev accuracy:", round(accuracy, 3))
+
+test_prediction(25, W1, b1, W2, b2)
+evaluate_dev_set(W1, b1, W2, b2)
