@@ -14,10 +14,10 @@ m, n = data.shape
 print(f"Images: {m}")
 print(f"Pixels per image: {n}")
 
-dev_images = images[:1000]
+dev_images = images[:1000].T
 dev_labels = labels[:1000]
 
-train_images = images[1000:]
+train_images = images[1000:].T
 train_labels = labels[1000:]
 
 print(train_images.shape)
@@ -40,4 +40,14 @@ def softmax(Z):
     #axis 0: does the operation down the rows separately for each column
     exp_Z = np.exp(Z - np.max(Z, axis=0, keepdims=True))
     return exp_Z / np.sum(exp_Z, axis=0, keepdims=True)
+
+def forward_prop(W1, b1, W2, b2, X):
+    
+    Z1 = W1.dot(X) + b1
+    A1 = ReLU(Z1)
+
+    Z2 = W2.dot(A1) + b2
+    A2 = softmax(Z2)
+
+    return Z1, A1, Z2, A2
 
