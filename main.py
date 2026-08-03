@@ -7,7 +7,7 @@ data = np.array(data)
 np.random.shuffle(data)
 
 labels = data[:, 0]
-#changes to black or white rather than brightness
+#normalise pixel values from 0-255 to 0-1
 images = data[:, 1:] / 255.0
 
 m, n = data.shape
@@ -89,6 +89,34 @@ def get_predictions(A2):
 
 def get_accuracy(predictions, Y):
     return np.mean(predictions == Y)
+
+def gradient_descent(X, Y, iterations, learning_rate):
+    
+    W1, b1, W2, b2 = init_params()
+
+    for i in range(iterations):
+
+        # Forward propagation
+        Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, X)
+
+        # Backpropagation
+        dW1, db1, dW2, db2 = backward_prop(Z1, A1, Z2, A2, W2, X, Y)
+
+        # Update parameters
+        W1, b1, W2, b2 = update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, learning_rate)
+
+        # Print progress every 10 iterations
+        if i % 10 == 0:
+            predictions = get_predictions(A2)
+            accuracy = get_accuracy(predictions, Y)
+
+            print(f"Iteration: {i}")
+            print(f"Accuracy: {accuracy:.3f}")
+
+    return W1, b1, W2, b2
+
+
+W1, b1, W2, b2 = gradient_descent(train_images, train_labels, 500, 0.1)
 
 
 
