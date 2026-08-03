@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 data = pd.read_csv("mnist_train.csv")
 data = np.array(data)
@@ -140,5 +141,12 @@ def test_prediction(index, W1, b1, W2, b2):
 
     print("Prediction:", prediction[0])
     print("Actual:", dev_labels[index])
+
+    image = current_image.reshape((28, 28))
+
+    plt.imshow(image, cmap="gray")
+    plt.title(f"Prediction: {prediction[0]}, Actual: {dev_labels[index]}")
+    plt.axis("off")
+    plt.show()
 
 test_prediction(0, W1, b1, W2, b2)
