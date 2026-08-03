@@ -24,7 +24,7 @@ print(train_images.shape)
 print(dev_images.shape)
 
 def init_params():
-    
+
     W1 = np.random.randn(10, 784) * 0.01
     b1 = np.zeros((10, 1))
 
@@ -32,3 +32,6 @@ def init_params():
     b2 = np.zeros((10, 1))
 
     return W1, b1, W2, b2
+
+def ReLU(Z):
+    return np.maximum(Z, 0)
