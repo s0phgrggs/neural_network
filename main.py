@@ -51,3 +51,12 @@ def forward_prop(W1, b1, W2, b2, X):
 
     return Z1, A1, Z2, A2
 
+def one_hot(Y):
+    one_hot_Y = np.zeros((Y.size, 10))
+    one_hot_Y[np.arange(Y.size), Y] = 1
+    
+    return one_hot_Y.T
+
+test_labels = np.array([2, 5, 7])
+
+print(one_hot(test_labels))
