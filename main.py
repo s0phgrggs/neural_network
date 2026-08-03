@@ -35,3 +35,9 @@ def init_params():
 
 def ReLU(Z):
     return np.maximum(Z, 0)
+
+def softmax(Z):
+    #axis 0: does the operation down the rows separately for each column
+    exp_Z = np.exp(Z - np.max(Z, axis=0, keepdims=True))
+    return exp_Z / np.sum(exp_Z, axis=0, keepdims=True)
+
