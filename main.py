@@ -47,7 +47,11 @@ def backward_prop(Z1, A1, Z2, A2, W2, X, Y):
     dW2 = (1 / X.shape[1]) * dZ2.dot(A1.T)
     db2 = (1 / X.shape[1]) * np.sum(dZ2, axis=1, keepdims=True)
 
-    return dW2, db2
+    dZ1 = W2.T.dot(dZ2) * ReLU_deriv(Z1)
+    dW1 = (1 / X.shape[1]) * dZ1.dot(X.T)
+    db1 = (1 / X.shape[1]) * np.sum(dZ1, axis=1, keepdims=True)
+
+    return dW1, db1, dW2, db2
 
 def softmax(Z):
     #axis 0: does the operation down the rows separately for each column
@@ -69,3 +73,4 @@ def one_hot(Y):
     one_hot_Y[np.arange(Y.size), Y] = 1
 
     return one_hot_Y.T
+
