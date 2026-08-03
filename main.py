@@ -4,12 +4,12 @@ import pandas as pd
 data = pd.read_csv("mnist_train.csv")
 data = np.array(data)
 
-m, n = data.shape
 np.random.shuffle(data)
 
 labels = data[:, 0]
-images = data[:, 1:]
-images = images / 255.0
+#changes to black or white rather than brightness
+images = data[:, 1:] / 255.0
 
-print("Number of images:", m)
-print("Number of pixels:", n - 1)
+m, n = data.shape
+print(f"Images: {m}")
+print(f"Pixels per image: {n}")
