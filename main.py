@@ -39,6 +39,13 @@ def ReLU(Z):
 def ReLU_deriv(Z):
     return Z > 0
 
+def backward_prop(Z1, A1, Z2, A2, W2, X, Y):
+    
+    one_hot_Y = one_hot(Y)
+    dZ2 = A2 - one_hot_Y
+
+    return dZ2
+
 def softmax(Z):
     #axis 0: does the operation down the rows separately for each column
     exp_Z = np.exp(Z - np.max(Z, axis=0, keepdims=True))
@@ -59,3 +66,4 @@ def one_hot(Y):
     one_hot_Y[np.arange(Y.size), Y] = 1
 
     return one_hot_Y.T
+
