@@ -37,16 +37,11 @@ def test_prediction(index, W1, b1, W2, b2):
     
     current_image = dev_images[:, index, None]
 
-    prediction = make_predictions(
-        current_image,
-        W1,
-        b1,
-        W2,
-        b2
-    )
+    prediction, confidence = make_predictions(current_image, W1, b1, W2, b2)
 
     print("Prediction:", prediction[0])
     print("Actual:", dev_labels[index])
+    print("Confidence:", round(confidence[0] * 100, 2), "%")
 
     image = current_image.reshape((28, 28))
 

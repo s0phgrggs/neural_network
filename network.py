@@ -95,7 +95,7 @@ def gradient_descent(X, Y, iterations, learning_rate):
 def make_predictions(X, W1, b1, W2, b2):
     
     _, _, _, A2 = forward_prop(W1, b1, W2, b2, X)
-
     predictions = get_predictions(A2)
+    confidence = np.max(A2, axis=0)
 
-    return predictions
+    return predictions, confidence
