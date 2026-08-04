@@ -50,6 +50,22 @@ def test_prediction(index, W1, b1, W2, b2):
     plt.axis("off")
     plt.show()
 
+def show_predictions(amount, W1, b1, W2, b2):
+    
+    for i in range(amount):
+        current_image = dev_images[:, i, None]
+        prediction, confidence = make_predictions(current_image, W1, b1, W2, b2)
+        image = current_image.reshape((28, 28))
+
+        plt.imshow(image, cmap="gray")
+        plt.title(
+            "Prediction: " + str(prediction[0]) +
+            " Actual: " + str(dev_labels[i]) +
+            " Confidence: " + str(round(confidence[0] * 100, 2)) + "%"
+        )
+        plt.axis("off")
+        plt.show()
+
 def evaluate_dev_set(W1, b1, W2, b2):
     
     predictions = make_predictions(
@@ -58,5 +74,6 @@ def evaluate_dev_set(W1, b1, W2, b2):
 
     print("Dev accuracy:", round(accuracy, 3))
 
-test_prediction(25, W1, b1, W2, b2)
+#test_prediction(25, W1, b1, W2, b2)
+show_predictions(10, W1, b1, W2, b2)
 evaluate_dev_set(W1, b1, W2, b2)
