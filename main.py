@@ -51,20 +51,26 @@ def test_prediction(index, W1, b1, W2, b2):
     plt.show()
 
 def show_predictions(amount, W1, b1, W2, b2):
-    
+    rows = 2
+    cols = 5
+    fig, axes = plt.subplots(rows, cols, figsize=(10, 5))
     for i in range(amount):
         current_image = dev_images[:, i, None]
         prediction, confidence = make_predictions(current_image, W1, b1, W2, b2)
         image = current_image.reshape((28, 28))
 
-        plt.imshow(image, cmap="gray")
-        plt.title(
-            "Prediction: " + str(prediction[0]) +
-            " Actual: " + str(dev_labels[i]) +
-            " Confidence: " + str(round(confidence[0] * 100, 2)) + "%"
+        ax = axes[i // cols, i % cols]
+        ax.imshow(image, cmap="gray")
+        ax.set_title(
+            "Pred: " + str(prediction[0]) +
+            "\nActual: " + str(dev_labels[i]) +
+            "\n" + str(round(confidence[0] * 100, 2)) + "%"
         )
-        plt.axis("off")
-        plt.show()
+
+        ax.axis("off")
+
+    plt.tight_layout()
+    plt.show()
 
 def evaluate_dev_set(W1, b1, W2, b2):
     
