@@ -116,13 +116,16 @@ def gradient_descent(X, Y, iterations, learning_rate):
 
     return W1, b1, W2, b2
 
-W1 = np.load("W1.npy")
-b1 = np.load("b1.npy")
 
-W2 = np.load("W2.npy")
-b2 = np.load("b2.npy")
+W1, b1, W2, b2 = gradient_descent(train_images, train_labels, 500, 0.1)
 
-print("Model loaded!")
+np.save("W1.npy", W1)
+np.save("b1.npy", b1)
+
+np.save("W2.npy", W2)
+np.save("b2.npy", b2)
+
+print("Model saved!")
 
 def make_predictions(X, W1, b1, W2, b2):
     
@@ -164,3 +167,4 @@ def evaluate_dev_set(W1, b1, W2, b2):
 
 test_prediction(25, W1, b1, W2, b2)
 evaluate_dev_set(W1, b1, W2, b2)
+
