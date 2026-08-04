@@ -9,7 +9,7 @@ The model uses the MNIST handwritten digit dataset.
 Each example contians:
 - One label representing 0-9 
 - 784 pixel values representing a 28x28 image
-Each of thes eis then converted into a vextor of 784 pixels which are then normalised to hold a value of 0-1.
+Each of these is then converted into a vector of 784 pixels which are then normalised to hold a value of 0-1.
 This improves the training stability as it makes the inputs easier for the optimation algorithm to work with.
 
 The network contains an input layer of 784 neurons, a hidden layer of 64 layers, ReLU activation, an output layer of 10 neurons, softmax activation and prediction.
