@@ -51,3 +51,11 @@ This model achieves approximately 90% accuracy on unseen development data.
 - Plot training loss
 - Add confusion matrix
 - Create an interactive web demo
+
+## Credits
+
+Inspired by the YouTube tutorial:
+
+* *Neural Network from Scratch in Python* — Samson Zhang
+
+The tutorial was used as a learning resource for implementing the core concepts of neural networks, including forward propagation, backpropagation, and gradient descent. The project was then extended with additional features and documentation.
