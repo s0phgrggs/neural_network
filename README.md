@@ -22,6 +22,20 @@ The parameters are:
 - W2: (10, 64)
 - b2: (10, 1)
 
+## Mathematical Foundation
+
+Forward Propagation
+
+Z₁ = W₁X + b₁
+A₁ = ReLU(Z₁)
+
+Z₂ = W₂A₁ + b₂
+A₂ = Softmax(Z₂)
+
+Gradient Descent
+
+W = W − α∇W
+
 ## Training Process
 The network is trained using gradient descent. 
 Each training iteration follows these steps:
@@ -38,7 +52,7 @@ The weights and biases are adjusted to reduce further errors
 ## Results
 The trained model achieves approximately 90% training accuracy and 89–90% accuracy on the development set.
 
-# Features
+## Features
 - Fully connected neural network implemented from scratch
 - Forward propagation
 - Backpropagation
