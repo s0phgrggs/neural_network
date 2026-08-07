@@ -6,13 +6,15 @@ The goal of this project was to understand the maths and internal processes behi
 
 ## Dataset
 The model uses the MNIST handwritten digit dataset.
-Each example contians:
+Each example contains:
 - One label representing 0-9 
 - 784 pixel values representing a 28x28 image
-Each of these is then converted into a vector of 784 pixels which are then normalised to hold a value of 0-1.
-This improves the training stability as it makes the inputs easier for the optimation algorithm to work with.
+Each image is flattened into a vector of 784 pixel values and normalised to the range 0–1. Normalisation improves training stability by keeping the input values on a consistent scale, making gradient descent more effective.
 
-The network contains an input layer of 784 neurons, a hidden layer of 64 layers, ReLU activation, an output layer of 10 neurons, softmax activation and prediction.
+The network consists of:
+- An input layer of 784 neurons
+- A hidden layer of 64 neurons using ReLU activation
+- An output layer of 10 neurons using Softmax activation
 
 The parameters are:
 - W1: (64, 784)
@@ -34,17 +36,17 @@ The weights and biases are adjusted to reduce further errors
 (Parameter = Parameter - learning_rate * gradient)
 
 ## Results
-This model achieves approximately 90% accuracy on unseen development data.
+The trained model achieves approximately 90% training accuracy and 89–90% accuracy on the development set.
 
 # Features
-- Neural network implemented from scratch
-- NumPy matrix operations
-- Custom forward propagation
-- Custom backpropagation
-- Gradient descent training
-- Model saving/loading
+- Fully connected neural network implemented from scratch
+- Forward propagation
+- Backpropagation
+- Gradient descent optimisation
+- NumPy vectorised matrix operations
+- Model saving and loading
 - Prediction confidence scores
-- Visual prediction display
+- Visual prediction display using Matplotlib
 
 ## Future Improvements
 - Add loss function tracking
@@ -58,4 +60,4 @@ Inspired by the YouTube tutorial:
 
 * *Neural Network from Scratch in Python* — Samson Zhang
 
-The tutorial was used as a learning resource for implementing the core concepts of neural networks, including forward propagation, backpropagation, and gradient descent. The project was then extended with additional features and documentation.
+The tutorial was used as a learning resource for understanding the fundamentals of neural networks. The implementation was extended with additional features, documentation, model saving/loading, confidence scoring, and visualisation.
